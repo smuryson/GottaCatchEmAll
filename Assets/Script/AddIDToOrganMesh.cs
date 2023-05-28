@@ -9,7 +9,7 @@ public class AddIDToOrganMesh : MonoBehaviour
     [SerializeField]
     public Organ organ;
 
-    public int iD = 0;
+    private int iD = 0;
     // Start is called before the first frame update
     void Start()
     {

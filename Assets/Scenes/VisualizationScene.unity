@@ -169,7 +169,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 4183043852514728370}
   organ: {fileID: 11400000, guid: 91637b179e0c0c24ebf7a9d238455b0f, type: 2}
-  iD: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -310,7 +309,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 4183043852798057019}
   organ: {fileID: 11400000, guid: 0777f66a06293494bae3991f4a926549, type: 2}
-  iD: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,6 +471,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1341011654}
+  - component: {fileID: 1341011655}
   m_Layer: 0
   m_Name: TestBody
   m_TagString: Untagged
@@ -498,6 +497,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1341011655
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1341011653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cec42e30c349a8e48b78698f4cee3177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dataset: {fileID: 4900000, guid: 6066b57eff824ac4e828479a6f02888e, type: 3}
+  timeSteps: 1
+  duration: 240
 --- !u!1 &1876065360
 GameObject:
   m_ObjectHideFlags: 0
@@ -612,7 +626,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 4183043852075983907}
   organ: {fileID: 11400000, guid: f89457e5db3cea3498de5bd4b3550981, type: 2}
-  iD: 0
 --- !u!33 &216380592047057411
 MeshFilter:
   m_ObjectHideFlags: 0
