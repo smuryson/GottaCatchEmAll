@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b98d411b7b7d0474a8ac2362c2460ae1, type: 3}
-  m_Name: Lunge_Rechts
+  m_Name: 4_Liver
   m_EditorClassIdentifier: 
-  name: Lunge_Rechts
-  iD: 2
+  name: Leber
+  iD: 4

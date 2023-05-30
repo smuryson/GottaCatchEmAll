@@ -48,7 +48,7 @@ public class Datenleser : MonoBehaviour
                 if (hour == entries[i].Stunde)
                 {
                 //DoColourStuff(entries[i].OrganID, entries[i].Kondition, entries[i].Schmerz);
-                Debug.Log(entries[i].Stunde + ": " + entries[i].OrganID + " , " + entries[i].Kondition + " , " + entries[i].Schmerz);
+                Debug.Log("Stunde " + entries[i].Stunde + ": Organ " + entries[i].OrganID + " | Betroffenheit: " + entries[i].Kondition + " | Schmerz: " + entries[i].Schmerz);
                 }
             }
         yield return new WaitForSeconds(timeSteps);
