@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using UnityEditor.Profiling.Memory.Experimental;
 using UnityEditor.VersionControl;
@@ -11,13 +12,15 @@ public class Datenleser : MonoBehaviour
     [SerializeField]
     private TextAsset dataset;
     [SerializeField]
-    private float timeSteps;
-    [SerializeField]
-    private int duration;
+    private float timeStepsInSeconds;
+    bool isReverse;
+    int maxHour;
+    int minHour = 0;
 
-    // Start is called before the first frame update
+    // Start is called before the first frame updater
     void Start()
     {
+        isReverse = false;
         //added Path des Nutzers, der bis /Assets geht mit dem Path bis zur Textdatei
         string pathToAssets = Application.dataPath;
         string pathRest = "/Datasets/" + dataset.name + ".txt";
@@ -37,21 +40,63 @@ public class Datenleser : MonoBehaviour
             values = data[i].Split('.');
             entries[i] = new Entry(values);
         }
+        maxHour = 0;
+        for (int i = 0; i < entries.Length; i++)
+        {
+            if (entries[i].Stunde > maxHour)
+            {
+                maxHour = entries[i].Stunde;
+            }
+        }
         StartCoroutine(UpdateModelEveryTimestep(entries));
     }
     IEnumerator UpdateModelEveryTimestep(Entry[] entries)
     {
-        for(int hour = 0; hour < duration; hour++)
+        for (int hour = 0; hour < maxHour + 1; hour++)
         {
+            //check, ob Reverse an ist
+            if (isReverse == true)
+            {
+                hour--;
+                hour--;
+            }
+            //checke,ob Stunde unter 0
+            if(hour < minHour)
+            {
+                hour = minHour;
+            }
+            //checke, ob Stunde unter Max
+            if(hour > maxHour)
+            {
+                hour = maxHour;
+            }
+            //mache Zeug fuer alle betroffenen Objekte
             for (int i = 0; i < entries.Length; i++)
             {
                 if (hour == entries[i].Stunde)
                 {
                 //DoColourStuff(entries[i].OrganID, entries[i].Kondition, entries[i].Schmerz);
-                Debug.Log("Stunde " + entries[i].Stunde + ": Organ " + entries[i].OrganID + " | Betroffenheit: " + entries[i].Kondition + " | Schmerz: " + entries[i].Schmerz);
+                UnityEngine.Debug.Log("Stunde " + entries[i].Stunde + ": Organ " + entries[i].OrganID + " | Betroffenheit: " + entries[i].Kondition + " | Schmerz: " + entries[i].Schmerz);
                 }
             }
-        yield return new WaitForSeconds(timeSteps);
+        yield return new WaitForSeconds(timeStepsInSeconds);
+        }
+    }
+    private void Update()
+    {
+        if (Input.GetKeyUp(KeyCode.R))
+        {
+            if (isReverse == false)
+            {
+                isReverse = true;
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.T))
+        {
+            if (isReverse == true)
+            {
+                isReverse = false;
+            }
         }
     }
 }
