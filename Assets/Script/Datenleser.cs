@@ -16,7 +16,18 @@ public class Datenleser : MonoBehaviour
     bool isReverse;
     int maxHour;
     int minHour = 0;
+    int hour = 0;
+    int savedHour = 0;
+    Entry[] entries;
 
+    public int GetMaxHour()
+    {
+        return maxHour;
+    }
+    public int GetHour()
+    {
+        return hour;
+    }
     // Start is called before the first frame updater
     void Start()
     {
@@ -34,7 +45,7 @@ public class Datenleser : MonoBehaviour
         //splittet Einträge
         string[] data = content.Split('\n');
         string[] values = new string[6];
-        Entry[] entries = new Entry[data.Length];
+        entries = new Entry[data.Length];
         for (int i = 0; i < data.Length; i++)
         {
             values = data[i].Split('.');
@@ -48,11 +59,10 @@ public class Datenleser : MonoBehaviour
                 maxHour = entries[i].Stunde;
             }
         }
-        StartCoroutine(UpdateModelEveryTimestep(entries));
     }
     IEnumerator UpdateModelEveryTimestep(Entry[] entries)
     {
-        for (int hour = 0; hour < maxHour + 1; hour++)
+        for (hour = savedHour; hour < maxHour + 2; hour++)
         {
             //check, ob Reverse an ist
             if (isReverse == true)
@@ -82,22 +92,33 @@ public class Datenleser : MonoBehaviour
         yield return new WaitForSeconds(timeStepsInSeconds);
         }
     }
+    public void Starting()
+    {
+        StartCoroutine(UpdateModelEveryTimestep(entries));
+    }
+    public void Stop()
+    {
+        savedHour = hour;
+        StopAllCoroutines();
+    }
+    public void InverseTime()
+    {
+        isReverse = true;
+    }
+    public void UndoInverse()
+    {
+        isReverse = false;
+    }
+    public void Reset()
+    {
+        hour = 0;
+        savedHour = 0;
+        Stop();
+        UndoInverse();
+    }
     private void Update()
     {
-        if (Input.GetKeyUp(KeyCode.R))
-        {
-            if (isReverse == false)
-            {
-                isReverse = true;
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.T))
-        {
-            if (isReverse == true)
-            {
-                isReverse = false;
-            }
-        }
+
     }
 }
 public class Entry
