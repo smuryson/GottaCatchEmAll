@@ -19,6 +19,8 @@ public class Datenleser : MonoBehaviour
     int hour = 0;
     int savedHour = 0;
     Entry[] entries;
+    bool isStopped;
+    bool isReset;
 
     public int GetMaxHour()
     {
@@ -28,10 +30,20 @@ public class Datenleser : MonoBehaviour
     {
         return hour;
     }
+    public float GetTimesteps()
+    {
+        return timeStepsInSeconds;
+    }
+    public bool GetIsStopped()
+    {
+        return isStopped;
+    }
     // Start is called before the first frame updater
     void Start()
     {
         isReverse = false;
+        isStopped = true;
+        isReset = true;
         //added Path des Nutzers, der bis /Assets geht mit dem Path bis zur Textdatei
         string pathToAssets = Application.dataPath;
         string pathRest = "/Datasets/" + dataset.name + ".txt";
@@ -95,11 +107,17 @@ public class Datenleser : MonoBehaviour
     public void Starting()
     {
         StartCoroutine(UpdateModelEveryTimestep(entries));
+        isStopped = false;
+        isReset = false;
     }
     public void Stop()
     {
         savedHour = hour;
         StopAllCoroutines();
+        if(isReset == true)
+        {
+            isStopped = false;
+        }else isStopped = true;
     }
     public void InverseTime()
     {
@@ -113,12 +131,10 @@ public class Datenleser : MonoBehaviour
     {
         hour = 0;
         savedHour = 0;
+        isReset = true;
         Stop();
+        isStopped = true;
         UndoInverse();
-    }
-    private void Update()
-    {
-
     }
 }
 public class Entry

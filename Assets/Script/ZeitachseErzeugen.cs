@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -25,6 +27,8 @@ public class ZeitachseErzeugen : MonoBehaviour
     [SerializeField]
     Text ifDay;
     int hour;
+    [SerializeField]
+    GameObject icon;
 
     void Start()
     {
@@ -39,48 +43,36 @@ public class ZeitachseErzeugen : MonoBehaviour
     }
     private void Update()
     {
-        //RectTransform newIcon = null;
-        if(checkedMax == false)
+        if (checkedMax == false)
         {
             int maxValue = datenleser.GetMaxHour();
             MakeTimeStamps(maxValue);
             checkedMax = true;
-            //newIcon = Instantiate(iconRect);
-            //CreateIcon(0,newIcon);
+            MoveIcon(0);
         }
-        //int previousHour = hour;
+        int previousHour = hour;
         hour = datenleser.GetHour();
-        //if(hour != previousHour)
-        //{
-        //    MoveIcon(hour, newIcon);
-        //}
+        if (hour != previousHour)
+        {
+            MoveIcon(hour);
+        }
     }
-    private void CreateIcon(float hour, RectTransform newIcon)
+    private void MoveIcon(float hour)
     {
+        //Bewegenden Punkt erstellen
         maxValue = datenleser.GetMaxHour();
-        newIcon = Instantiate(iconRect);
+        RectTransform newIcon = Instantiate(iconRect);
         newIcon.SetParent(graphContainer);
         float graphSizeY = graphContainer.sizeDelta.y;
         float xPos = (hour / maxValue) * 1050;
-        if(xPos == float.NaN)
+        if (xPos == float.NaN)
         {
             xPos = 0;
         }
-        newIcon.gameObject.SetActive(true);
         newIcon.anchoredPosition = new Vector2(xPos, 50);
-
-        iconRect.gameObject.SetActive(false);
+        float timesteps = datenleser.GetTimesteps();
+        StartCoroutine(DestroyInSeconds(newIcon, timesteps));
     }
-    //private void MoveIcon(float hour, RectTransform newIcon)
-    //{
-    //    float graphSizeY = graphContainer.sizeDelta.y;
-    //    float xPos = (hour / maxValue) * 1050;
-    //    if (xPos == float.NaN)
-    //    {
-    //        xPos = 0;
-    //    }
-    //    newIcon.GetComponent<RectTransform>().anchoredPosition = new Vector2(xPos, 50);
-    //}
     private void MakeTimeStamps(int maxValue)
     {
         float graphSizeY = graphContainer.sizeDelta.y;
@@ -135,5 +127,17 @@ public class ZeitachseErzeugen : MonoBehaviour
         }
         labelTemplateX.gameObject.SetActive(false);
         dashTemplate.gameObject.SetActive(false);
+    }
+    //Bewegenden Punkt faden lassen
+    private IEnumerator DestroyInSeconds(RectTransform go , float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        while(datenleser.GetIsStopped() == true)
+        {
+            yield return new WaitForSeconds(0.2f);
+        }
+        go.GetComponent<Image>().color = Color.gray;
+        yield return new WaitForSeconds(1.2f * seconds);
+        go.gameObject.SetActive(false);
     }
 }
