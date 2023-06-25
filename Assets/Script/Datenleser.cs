@@ -124,7 +124,14 @@ public class Datenleser : MonoBehaviour
                         if (brokerId == entries[i].OrganID)
                         {
                             GameObject mesh = addIDList[j].GetMesh();
-                            //DoColourStuff(mesh);
+                            if (broker.name == "PainBroker")
+                            {
+                                //DoColourStuff(mesh, entries[i].Schmerz);
+                            }
+                            if (broker.name == "LimitationBroker")
+                            {
+                                //DoColourStuff(mesh, entries[i].Kondition);
+                            }
                         }
                     }
                         UnityEngine.Debug.Log("Stunde " + entries[i].Stunde + ": Organ " + entries[i].OrganID + " | Betroffenheit: " + entries[i].Kondition + " | Schmerz: " + entries[i].Schmerz);
@@ -133,9 +140,9 @@ public class Datenleser : MonoBehaviour
         yield return new WaitForSeconds(timeStepsInSeconds);
         }
     }
-    //public void DoColourStuff(GameObject mesh)
+    //public void DoColourStuff(GameObject mesh, int grad)
     //{
-    //    UnityEngine.Debug.Log( mesh.name);
+    //    UnityEngine.Debug.Log(mesh.name + " , " + grad);
     //}
     public void Starting()
     {
