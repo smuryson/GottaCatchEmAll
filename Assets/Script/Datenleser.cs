@@ -13,6 +13,8 @@ public class Datenleser : MonoBehaviour
     private TextAsset dataset;
     [SerializeField]
     private float timeStepsInSeconds;
+    [SerializeField]
+    GameObject broker;
     bool isReverse;
     int maxHour;
     int minHour = 0;
@@ -21,6 +23,8 @@ public class Datenleser : MonoBehaviour
     Entry[] entries;
     bool isStopped;
     bool isReset;
+    GameObject[] organBrokers;
+    AddIDToOrganMesh[] addIDList;
 
     public int GetMaxHour()
     {
@@ -41,9 +45,25 @@ public class Datenleser : MonoBehaviour
     // Start is called before the first frame updater
     void Start()
     {
+        //Zeitstrahl bzw. Buttonvariablen initieren
         isReverse = false;
         isStopped = true;
         isReset = true;
+
+        //Array mit allen Kindern(1.Grad) vom Brokerbody erstellen
+        int brokerChildCount = broker.transform.childCount;
+        organBrokers = new GameObject[brokerChildCount];
+        for(int i = 0 ; i < brokerChildCount; i++)
+        {
+            organBrokers[i] = broker.transform.GetChild(i).gameObject;
+        }
+        //Array mit allen AddIdToMesh Skripten
+        addIDList = new AddIDToOrganMesh[organBrokers.Length];
+        for(int i = 0 ; i < organBrokers.Length ; i++)
+        {
+            addIDList[i] = organBrokers[i].GetComponent<AddIDToOrganMesh>();
+        }
+
         //added Path des Nutzers, der bis /Assets geht mit dem Path bis zur Textdatei
         string pathToAssets = Application.dataPath;
         string pathRest = "/Datasets/" + dataset.name + ".txt";
@@ -97,13 +117,26 @@ public class Datenleser : MonoBehaviour
             {
                 if (hour == entries[i].Stunde)
                 {
-                //DoColourStuff(entries[i].OrganID, entries[i].Kondition, entries[i].Schmerz);
-                UnityEngine.Debug.Log("Stunde " + entries[i].Stunde + ": Organ " + entries[i].OrganID + " | Betroffenheit: " + entries[i].Kondition + " | Schmerz: " + entries[i].Schmerz);
+                    
+                    for (int j = 0; j < organBrokers.Length; j++)
+                    {
+                        int brokerId = addIDList[j].GetID();
+                        if (brokerId == entries[i].OrganID)
+                        {
+                            GameObject mesh = addIDList[j].GetMesh();
+                            //DoColourStuff(mesh);
+                        }
+                    }
+                        UnityEngine.Debug.Log("Stunde " + entries[i].Stunde + ": Organ " + entries[i].OrganID + " | Betroffenheit: " + entries[i].Kondition + " | Schmerz: " + entries[i].Schmerz);
                 }
             }
         yield return new WaitForSeconds(timeStepsInSeconds);
         }
     }
+    //public void DoColourStuff(GameObject mesh)
+    //{
+    //    UnityEngine.Debug.Log( mesh.name);
+    //}
     public void Starting()
     {
         StartCoroutine(UpdateModelEveryTimestep(entries));

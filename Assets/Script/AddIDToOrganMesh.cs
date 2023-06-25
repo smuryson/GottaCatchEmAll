@@ -21,4 +21,6 @@ public class AddIDToOrganMesh : MonoBehaviour
     {
         
     }
+    public int GetID() { return iD; }
+    public GameObject GetMesh() { return mesh; }
 }
