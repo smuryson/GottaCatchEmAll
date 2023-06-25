@@ -22,7 +22,7 @@ public class MoveOnButton : MonoBehaviour
         posMid.x = 0;
         posMid.y = 2.6f;
         posMid.z = -1.8f;
-        posRight.x = 1.2f;
+        posRight.x = 1.05f;
         posRight.y = 2.5f;
         posRight.z = -1;
     }
@@ -41,11 +41,11 @@ public class MoveOnButton : MonoBehaviour
                 transform.position = posMid;
                 break;
             case 1:
-                cam.orthographicSize = 1.2f;
+                cam.orthographicSize = 1f;
                 transform.position = posRight;
                 break;
             case -1:
-                cam.orthographicSize = 1.2f;
+                cam.orthographicSize = 1f;
                 transform.position = posLeft;
                 break;
         }
