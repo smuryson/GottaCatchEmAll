@@ -31,12 +31,12 @@ public class RotationManager : MonoBehaviour
             }
         }
     }
-    public void rotateRight()
+    public void rotateLeft()
     {
         isRotating = true;
         isLeft = false;
     }
-    public void rotateLeft()
+    public void rotateRight()
     {
         isRotating = true;
         isLeft = true;
@@ -44,5 +44,12 @@ public class RotationManager : MonoBehaviour
     public void rotateOff()
     {
         isRotating = false;
+    }
+    public void Reset()
+    {
+        isRotating = false;
+        isLeft = false;
+        Vector3 defaultVec = new Vector3(0, 180, 0);
+        body.transform.eulerAngles = defaultVec;
     }
 }

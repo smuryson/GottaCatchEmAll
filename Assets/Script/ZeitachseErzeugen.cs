@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 public class ZeitachseErzeugen : MonoBehaviour
 {
-    float maxValue;
     bool hourToDay = false;
     [SerializeField]
     Datenleser datenleser;
@@ -46,6 +45,7 @@ public class ZeitachseErzeugen : MonoBehaviour
         if (checkedMax == false)
         {
             int maxValue = datenleser.GetMaxHour();
+            //int maxValue = 200;
             MakeTimeStamps(maxValue);
             checkedMax = true;
             MoveIcon(0);
@@ -60,7 +60,8 @@ public class ZeitachseErzeugen : MonoBehaviour
     private void MoveIcon(float hour)
     {
         //Bewegenden Punkt erstellen
-        maxValue = datenleser.GetMaxHour();
+        int maxValue = datenleser.GetMaxHour();
+        //int maxValue = 200;
         RectTransform newIcon = Instantiate(iconRect);
         newIcon.SetParent(graphContainer);
         float graphSizeY = graphContainer.sizeDelta.y;
@@ -100,7 +101,7 @@ public class ZeitachseErzeugen : MonoBehaviour
         //Zahlen generieren
         for (float i = 0; i <= maxValue; i++)
         {
-            float xPos = (i / maxValue) *1050 + (1 / maxValue) * 1050;
+            float xPos = (i / maxValue) *1020 + (1 / maxValue) * 1050;
             RectTransform labelX = Instantiate(labelTemplateX);
             labelX.SetParent(graphContainer);
             labelX.gameObject.SetActive(true);
@@ -134,7 +135,7 @@ public class ZeitachseErzeugen : MonoBehaviour
         yield return new WaitForSeconds(seconds);
         while(datenleser.GetIsStopped() == true)
         {
-            yield return new WaitForSeconds(0.2f);
+                yield return new WaitForSeconds(0.2f);
         }
         go.GetComponent<Image>().color = Color.gray;
         yield return new WaitForSeconds(1.2f * seconds);

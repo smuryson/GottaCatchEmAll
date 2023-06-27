@@ -42,6 +42,10 @@ public class Datenleser : MonoBehaviour
     {
         return isStopped;
     }
+    public bool GetIsReset()
+    {
+        return isReset;
+    }
     // Start is called before the first frame updater
     void Start()
     {
