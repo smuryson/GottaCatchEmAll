@@ -78,7 +78,7 @@ public class Datenleser : MonoBehaviour
 
         string content = DatenBankReader.ReadToEnd();
 
-        //splittet Einträge
+        //splittet Eintrï¿½ge
         string[] data = content.Split('\n');
         string[] values = new string[6];
         entries = new Entry[data.Length];
@@ -130,11 +130,11 @@ public class Datenleser : MonoBehaviour
                             GameObject mesh = addIDList[j].GetMesh();
                             if (broker.name == "PainBroker")
                             {
-                                //DoColourStuff(mesh, entries[i].Schmerz);
+                                ChangeColorPain(mesh, entries[i].Schmerz);
                             }
                             if (broker.name == "LimitationBroker")
                             {
-                                //DoColourStuff(mesh, entries[i].Kondition);
+                                ChangeColorLimitation(mesh, entries[i].Kondition);
                             }
                         }
                     }
@@ -144,10 +144,86 @@ public class Datenleser : MonoBehaviour
         yield return new WaitForSeconds(timeStepsInSeconds);
         }
     }
-    //public void DoColourStuff(GameObject mesh, int grad)
-    //{
-    //    UnityEngine.Debug.Log(mesh.name + " , " + grad);
-    //}
+
+    public class OriginalMeshColor  : MonoBehaviour
+    {
+        public Color Color { get; set; }
+    }
+
+    public void ChangeColorPain(GameObject mesh, int schmerz)
+    {
+        Renderer renderer = mesh.GetComponent<Renderer>();
+
+        // Check if the mesh has the original material color stored
+        if (!mesh.TryGetComponent(out OriginalMeshColor originalColor))
+        {
+            // If the original color is not stored, store it
+            originalColor = mesh.gameObject.AddComponent<OriginalMeshColor>();
+            originalColor.Color = renderer.material.color;
+        }
+
+        if (schmerz == 0)
+        {
+            // Restore the original color of the mesh
+            renderer.material.color = originalColor.Color;
+            return;
+        }
+
+        // Normalize the 'schmerz' value to a range between 0 and 1
+        float intensity = Mathf.Clamp01(schmerz / 102f);
+
+        // Adjust the color values to achieve the desired shade
+        float redIntensity = intensity;
+        float greenIntensity = 1f;  // Set the green component to 1 for default green color
+        float blueIntensity = intensity;
+
+        // Create a new color with the adjusted values
+        Color color = new Color(redIntensity, greenIntensity, blueIntensity);
+
+        // Set the intensity of blue based on the normalized 'schmerz' value
+        //Color color = new Color(0f, 0f, intensity);
+
+        // Assign the calculated color to the mesh's material
+        renderer.material.color = color;
+
+        UnityEngine.Debug.Log(mesh.name + ", Pain: " + schmerz + "%");
+    }
+    public void ChangeColorLimitation(GameObject mesh, int kondition)
+    {
+        Renderer renderer = mesh.GetComponent<Renderer>();
+
+        // Check if the mesh has the original material color stored
+        if (!mesh.TryGetComponent(out OriginalMeshColor originalColor))
+        {
+            // If the original color is not stored, store it
+            originalColor = mesh.gameObject.AddComponent<OriginalMeshColor>();
+            originalColor.Color = renderer.material.color;
+        }
+
+        if (kondition == 0)
+        {
+            // Restore the original color of the mesh
+            renderer.material.color = originalColor.Color;
+            return;
+        }
+
+        // Normalize the 'schmerz' value to a range between 0 and 1
+        float intensity = Mathf.Clamp01(kondition / 102f);
+
+        // Adjust the color values to achieve the desired shade
+        float redIntensity = intensity;
+        float greenIntensity = intensity;
+        float blueIntensity = 1f;  // Set the green component to 1 for default blue color
+
+        // Create a new color with the adjusted values
+        Color color = new Color(redIntensity, greenIntensity, blueIntensity);
+
+        // Assign the calculated color to the mesh's material
+        renderer.material.color = color;
+
+        UnityEngine.Debug.Log(mesh.name + ", Limitation: " + kondition + "%");
+    }
+
     public void Starting()
     {
         StartCoroutine(UpdateModelEveryTimestep(entries));
