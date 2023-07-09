@@ -19,6 +19,17 @@ public class TransparencyManagerOrgans : MonoBehaviour
     {
         setTransparent = false;
     }
+    public void ChangeTransparency()
+    {
+        if (setTransparent == true)
+        {
+            setTransparent = false;
+        }
+        else
+        {
+            setTransparent = true;
+        }
+    }
     public void UseOrgan()
     {
         organIsGettingUsed = true;
@@ -58,7 +69,7 @@ public class TransparencyManagerOrgans : MonoBehaviour
                 Color color = renderer.material.color;
                 color.a = 1;
                 renderer.material.color = color;
-                isTransparent = true;
+                isTransparent = false;
             }
         }
     }

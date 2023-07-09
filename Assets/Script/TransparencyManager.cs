@@ -17,7 +17,17 @@ public class TransparencyManager : MonoBehaviour
     {
         setTransparent = false;
     }
-
+    public void ChangeTransparency()
+    {
+        if(setTransparent == true)
+        {
+            setTransparent = false;
+        }
+        else
+        {
+            setTransparent = true;
+        }
+    }
     private void Start()
     {
         Color color = renderer.material.color;
@@ -45,7 +55,7 @@ public class TransparencyManager : MonoBehaviour
                 Color color = renderer.material.color;
                 color.a = 1;
                 renderer.material.color = color;
-                isTransparent = true;
+                isTransparent = false;
             }
         }
     }
