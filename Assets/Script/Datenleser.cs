@@ -172,21 +172,45 @@ public class Datenleser : MonoBehaviour
         float intensity = Mathf.Clamp01(schmerz / 101f);
 
         Color color;
-        if (intensity <= 0.25f)
+        if (intensity <= 0.1f)
         {
-            color = new Color(0.82f, 0.62f, 0.64f); //hex: D19EA2
+            color = new Color(0.8823529411764706f, 0.6470588235294118f, 0.13725490196078433f); //hex: E1A523
+        }
+        else if (intensity <= 0.2f)
+        {
+            color = new Color(0.8588235294117647f, 0.5882352941176471f, 0.12941176470588237f); //hex: DB9621
+        }
+        else if (intensity <= 0.3f)
+        {
+            color = new Color(0.8313725490196079f, 0.5411764705882353f, 0.12941176470588237f); //hex: D48A21
+        }
+        else if (intensity <= 0.4f)
+        {
+            color = new Color(0.8156862745098039f, 0.48627450980392156f, 0.13333333333333333f); //hex: D07C22
         }
         else if (intensity <= 0.5f)
         {
-            color = new Color(0.82f, 0.41f, 0.46f); //hex: D16976
+            color = new Color(0.792156862745098f, 0.42745098039215684f, 0.12156862745098039f); //hex: CA6D1F
         }
-        else if (intensity <= 0.75f)
+        else if (intensity <= 0.6f)
         {
-            color = new Color(0.81f, 0.2f, 0.28f); //hex: D13447
+            color = new Color(0.7647058823529411f, 0.3843137254901961f, 0.3843137254901961f); //hex: C3621D
+        }
+        else if (intensity <= 0.7f)
+        {
+            color = new Color(0.7372549019607844f, 0.3215686274509804f, 0.11764705882352941f); //hex: BC521E
+        }
+        else if (intensity <= 0.8f)
+        {
+            color = new Color(0.7176470588235294f, 0.27058823529411763f, 0.12549019607843137f); //hex: B74520
+        }
+        else if (intensity <= 0.9f)
+        {
+            color = new Color(0.6823529411764706f, 0.21176470588235294f, 0.11764705882352941f); //hex: AE361E
         }
         else
         {
-            color = new Color(0.73f, 0f, 0.08f); //hex: BA0015
+            color = new Color(0.6549019607843137f, 0.15294117647058825f, 0.11764705882352941f); //hex: A7271E
         }
 
         // assignt farbe zum material
@@ -216,21 +240,45 @@ public class Datenleser : MonoBehaviour
         float intensity = Mathf.Clamp01(kondition / 101f);
 
         Color color;
-        if (intensity <= 0.25f)
+        if (intensity <= 0.1f)
         {
-            color = new Color(0.66f, 0.77f, 0.89f); //hex: AAC6E4
+            color = new Color(0.4666666666666667f, 0.9411764705882353f, 0.4980392156862745f); //hex: 77F07F
+        }
+        else if (intensity <= 0.2f)
+        {
+            color = new Color(0.4117647058823529f, 0.8313725490196079f, 0.4392156862745098f); //hex: 69D470
+        }
+        else if (intensity <= 0.3f)
+        {
+            color = new Color(0.24313725490196078f, 0.788235294117647f, 0.5843137254901961f); //hex: 3EC995
+        }
+        else if (intensity <= 0.4f)
+        {
+            color = new Color(0.2980392156862745f, 0.2980392156862745f, 0.8f); //hex: 4CBCCC
         }
         else if (intensity <= 0.5f)
         {
-            color = new Color(0.44f, 0.65f, 0.9f); //hex: 70A6E4
+            color = new Color(0.2549019607843137f, 0.6274509803921569f, 0.6823529411764706f); //hex: 41A0AE
         }
-        else if (intensity <= 0.75f)
+        else if (intensity <= 0.6f)
         {
-            color = new Color(0.22f, 0.53f, 0.9f); //hex: 3989E4
+            color = new Color(0.27058823529411763f, 0.5098039215686274f, 0.7803921568627451f); //hex: 4582C7
+        }
+        else if (intensity <= 0.7f)
+        {
+            color = new Color(0.21176470588235294f, 0.4f, 0.611764705882353f); //hex: 36669C
+        }
+        else if (intensity <= 0.8f)
+        {
+            color = new Color(0.4117647058823529f, 0.3333333333333333f, 0.7607843137254902f); //hex: 6955C2
+        }
+        else if (intensity <= 0.9f)
+        {
+            color = new Color(0.2980392156862745f, 0.2980392156862745f, 0.5490196078431373f); //hex: 4C3E8C
         }
         else
         {
-            color = new Color(0f, 0.41f, 0.9f); //hex: 0059BF
+            color = new Color(0.09411764705882353f, 0.11372549019607843f, 0.11372549019607843f); //hex: 181D6B
         }
 
         // assignt farbe zum material
