@@ -13,6 +13,7 @@ public class Datenleser : MonoBehaviour
     private TextAsset dataset;
     [SerializeField]
     private float timeStepsInSeconds;
+    private bool isSpedUp;
     [SerializeField]
     GameObject broker;
     bool isReverse;
@@ -37,6 +38,11 @@ public class Datenleser : MonoBehaviour
     public float GetTimesteps()
     {
         return timeStepsInSeconds;
+    }
+    public void SetTimeSteps()
+    {
+        if (!isSpedUp) { timeStepsInSeconds = 0.25f; isSpedUp = true; }
+        else { timeStepsInSeconds = 1; isSpedUp = false; }
     }
     public bool GetIsStopped()
     {
@@ -101,6 +107,7 @@ public class Datenleser : MonoBehaviour
                 maxHour = entries[i].Stunde;
             }
         }
+        isSpedUp = false;
     }
     IEnumerator UpdateModelEveryTimestep(Entry[] entries)
     {
