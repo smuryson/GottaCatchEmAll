@@ -65,7 +65,7 @@ public class ZeitachseErzeugen : MonoBehaviour
         RectTransform newIcon = Instantiate(iconRect);
         newIcon.SetParent(graphContainer);
         float graphSizeY = graphContainer.sizeDelta.y;
-        float xPos = (hour / maxValue) * 1050;
+        float xPos = (hour / maxValue) * 1020;
         if (xPos == float.NaN)
         {
             xPos = 0;
