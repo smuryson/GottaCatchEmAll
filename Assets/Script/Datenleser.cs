@@ -87,10 +87,16 @@ public class Datenleser : MonoBehaviour
             values = data[i].Split('.');
             entries[i] = new Entry(values);
         }
-        maxHour = 0;
-        for (int i = 0; i < entries.Length; i++)
+        //for (int i = 0; i < entries.Length; i++)
+        //{
+        //    if (entries[i].Stunde > maxHour)
+        //    {
+        //        maxHour = entries[i].Stunde;
+        //    }
+        //}
+        for(int i = 0; i < entries.Length; i++)
         {
-            if (entries[i].Stunde > maxHour)
+            if (entries[i].Final == 1)
             {
                 maxHour = entries[i].Stunde;
             }
@@ -304,12 +310,20 @@ public class Datenleser : MonoBehaviour
     }
     public void InverseTime()
     {
-        isReverse = true;
+        //isReverse = true;
+        if(isReverse == true)
+        {
+            isReverse = false;
+        }
+        else
+        {
+            isReverse = true;
+        }
     }
-    public void UndoInverse()
-    {
-        isReverse = false;
-    }
+    //public void UndoInverse()
+    //{
+    //    isReverse = false;
+    //}
     public void Reset()
     {
         hour = 0;
@@ -317,7 +331,7 @@ public class Datenleser : MonoBehaviour
         isReset = true;
         Stop();
         isStopped = true;
-        UndoInverse();
+        isReverse = false;
     }
 }
 public class Entry
@@ -336,12 +350,12 @@ public class Entry
 
     public Entry(string[] input)
     {
-        this.KrankheitID = Convert.ToInt16(input[0]);
-        this.OrganID = Convert.ToInt16(input[1]);
-        this.Stunde = Convert.ToInt16(input[2]);
-        this.Kondition = Convert.ToInt16(input[3]);
-        this.Schmerz = Convert.ToInt16(input[4]);
-        this.Final = Convert.ToInt16(input[5]);
+        this.KrankheitID = Convert.ToInt32(input[0]);
+        this.OrganID = Convert.ToInt32(input[1]);
+        this.Stunde = Convert.ToInt32(input[2]);
+        this.Kondition = Convert.ToInt32(input[3]);
+        this.Schmerz = Convert.ToInt32(input[4]);
+        this.Final = Convert.ToInt32(input[5]);
     }
 
     public int KrankheitID { get => krankheitID; set => krankheitID = value; }
