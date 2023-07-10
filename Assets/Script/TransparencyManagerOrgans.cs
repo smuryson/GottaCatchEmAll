@@ -6,7 +6,7 @@ public class TransparencyManagerOrgans : MonoBehaviour
 {
     [SerializeField]
     new Renderer renderer;
-    float alphaValueOrgans = 0.6f;
+    float alphaValueOrgans = 0.3f;
     bool isTransparent = false;
     bool setTransparent = true;
     bool organIsGettingUsed = false;

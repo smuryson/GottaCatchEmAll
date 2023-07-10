@@ -6,7 +6,7 @@ public class TransparencyManager : MonoBehaviour
 {
     [SerializeField]
     new Renderer renderer;
-    float alphaValueBones = 0.3f;
+    float alphaValueBones = 0.1f;
     bool isTransparent = false;
     bool setTransparent = true;
     public void SetTransparentOn()
