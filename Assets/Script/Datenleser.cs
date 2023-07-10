@@ -187,43 +187,43 @@ public class Datenleser : MonoBehaviour
         Color color;
         if (intensity <= 0.1f)
         {
-            color = new Color(0.8823529411764706f, 0.6470588235294118f, 0.13725490196078433f); //hex: E1A523
+            color = new Color(0.9490196078431372f, 0.38823529411764707f, 0.3137254901960784f); //hex: F26350
         }
         else if (intensity <= 0.2f)
         {
-            color = new Color(0.8588235294117647f, 0.5882352941176471f, 0.12941176470588237f); //hex: DB9621
+            color = new Color(0.788235294117647f, 0.25098039215686274f, 0.11372549019607843f); //hex: C9401D
         }
         else if (intensity <= 0.3f)
         {
-            color = new Color(0.8313725490196079f, 0.5411764705882353f, 0.12941176470588237f); //hex: D48A21
+            color = new Color(0.7215686274509804f, 0.1843137254901961f, 0.12549019607843137f); //hex: B82F20
         }
         else if (intensity <= 0.4f)
         {
-            color = new Color(0.8156862745098039f, 0.48627450980392156f, 0.13333333333333333f); //hex: D07C22
+            color = new Color(0.7294117647058823f, 0.12941176470588237f, 0.12549019607843137f); //hex: BA2120
         }
         else if (intensity <= 0.5f)
         {
-            color = new Color(0.792156862745098f, 0.42745098039215684f, 0.12156862745098039f); //hex: CA6D1F
+            color = new Color(0.6588235294117647f, 0.11764705882352941f, 0.11372549019607843f); //hex: A81E1D
         }
         else if (intensity <= 0.6f)
         {
-            color = new Color(0.7647058823529411f, 0.3843137254901961f, 0.3843137254901961f); //hex: C3621D
+            color = new Color(0.596078431372549f, 0.10980392156862745f, 0.10588235294117647f); //hex: 981C1B
         }
         else if (intensity <= 0.7f)
         {
-            color = new Color(0.7372549019607844f, 0.3215686274509804f, 0.11764705882352941f); //hex: BC521E
+            color = new Color(0.5490196078431373f, 0.09803921568627451f, 0.09803921568627451f); //hex: 8C1919
         }
         else if (intensity <= 0.8f)
         {
-            color = new Color(0.7176470588235294f, 0.27058823529411763f, 0.12549019607843137f); //hex: B74520
+            color = new Color(0.4196078431372549f, 0.08235294117647059f, 0.10588235294117647f); //hex: 6B151B
         }
         else if (intensity <= 0.9f)
         {
-            color = new Color(0.6823529411764706f, 0.21176470588235294f, 0.11764705882352941f); //hex: AE361E
+            color = new Color(0.34509803921568627f, 0.34509803921568627f, 0.10196078431372549f); //hex: 58111A
         }
         else
         {
-            color = new Color(0.6549019607843137f, 0.15294117647058825f, 0.11764705882352941f); //hex: A7271E
+            color = new Color(0.2901960784313726f, 0.06666666666666667f, 0.09803921568627451f); //hex: 4A1119
         }
 
         // assignt farbe zum material
@@ -236,17 +236,17 @@ public class Datenleser : MonoBehaviour
         Renderer renderer = mesh.GetComponent<Renderer>();
 
         // checkt im mesh nach original material color
-        if (!mesh.TryGetComponent(out OriginalMeshColor originalColor))
+        if (!mesh.TryGetComponent(out OriginalMeshData originalData))
         {
             // stored og color wenn nicht schon stored
-            originalColor = mesh.gameObject.AddComponent<OriginalMeshColor>();
-            originalColor.Color = renderer.material.color;
+            originalData = mesh.gameObject.AddComponent<OriginalMeshData>();
+            originalData.Material = renderer.material;
         }
 
         if (kondition == 0)
         {
             // gibt og color zurück wenn wert 0
-            renderer.material.color = originalColor.Color;
+            renderer.material = originalData.Material;
             return;
         }
 
@@ -255,47 +255,51 @@ public class Datenleser : MonoBehaviour
         Color color;
         if (intensity <= 0.1f)
         {
-            color = new Color(0.4666666666666667f, 0.9411764705882353f, 0.4980392156862745f); //hex: 77F07F
+            color = new Color(0.7490196078431373f, 0.9372549019607843f, 1f); //hex: BFEFFF
         }
         else if (intensity <= 0.2f)
         {
-            color = new Color(0.4117647058823529f, 0.8313725490196079f, 0.4392156862745098f); //hex: 69D470
+            color = new Color(0.6588235294117647f, 0.9019607843137255f, 1f); //hex: A8E6FF
         }
         else if (intensity <= 0.3f)
         {
-            color = new Color(0.24313725490196078f, 0.788235294117647f, 0.5843137254901961f); //hex: 3EC995
+            color = new Color(0.47843137254901963f, 0.8274509803921568f, 1f); //hex: 7AD3FF
         }
         else if (intensity <= 0.4f)
         {
-            color = new Color(0.2980392156862745f, 0.2980392156862745f, 0.8f); //hex: 4CBCCC
+            color = new Color(0.38823529411764707f, 0.792156862745098f, 1f); //hex: 63CAFF
         }
         else if (intensity <= 0.5f)
         {
-            color = new Color(0.2549019607843137f, 0.6274509803921569f, 0.6823529411764706f); //hex: 41A0AE
+            color = new Color(0.20784313725490197f, 0.7215686274509804f, 1f); //hex: 35B8FF
         }
         else if (intensity <= 0.6f)
         {
-            color = new Color(0.27058823529411763f, 0.5098039215686274f, 0.7803921568627451f); //hex: 4582C7
+            color = new Color(0f, 0.611764705882353f, 1f); //hex: 009CFF
         }
         else if (intensity <= 0.7f)
         {
-            color = new Color(0.21176470588235294f, 0.4f, 0.611764705882353f); //hex: 36669C
+            color = new Color(0.2980392156862745f, 0.33725490196078434f, 0.9607843137254902f); //hex: 4C56F5
         }
         else if (intensity <= 0.8f)
         {
-            color = new Color(0.4117647058823529f, 0.3333333333333333f, 0.7607843137254902f); //hex: 6955C2
+            color = new Color(0.24705882352941178f, 0.2823529411764706f, 0.8f); //hex: 3F48CC
         }
         else if (intensity <= 0.9f)
         {
-            color = new Color(0.2980392156862745f, 0.2980392156862745f, 0.5490196078431373f); //hex: 4C3E8C
+            color = new Color(0.20392156862745098f, 0.23137254901960785f, 0.6588235294117647f); //hex: 343BA8
         }
         else
         {
-            color = new Color(0.09411764705882353f, 0.11372549019607843f, 0.11372549019607843f); //hex: 181D6B
+            color = new Color(0.1568627450980392f, 0.1803921568627451f, 0.5098039215686274f); //hex: 282E82
         }
 
+        // Create a new material with the desired color
+        Material newMaterial = new Material(originalData.Material);
+        newMaterial.color = color;
+
         // assignt farbe zum material
-        renderer.material.color = color;
+        renderer.material = newMaterial;
 
         UnityEngine.Debug.Log(mesh.name + ", Limitation: " + kondition + "%");
     }
@@ -340,6 +344,10 @@ public class Datenleser : MonoBehaviour
         isStopped = true;
         isReverse = false;
     }
+}
+public class OriginalMeshData : MonoBehaviour
+{
+    public Material Material { get; set; }
 }
 public class Entry
 {
