@@ -199,7 +199,7 @@ public class Datenleser : MonoBehaviour
         }
         else if (intensity <= 0.4f)
         {
-            color = new Color(0.7294117647058823f, 0.12941176470588237f, 0.12549019607843137f); //hex: BA2120
+            color = new Color(0.6901960784313725f, 0.15294117647058825f, 0.12156862745098039f); //hex: B0271F
         }
         else if (intensity <= 0.5f)
         {
@@ -219,7 +219,7 @@ public class Datenleser : MonoBehaviour
         }
         else if (intensity <= 0.9f)
         {
-            color = new Color(0.34509803921568627f, 0.34509803921568627f, 0.10196078431372549f); //hex: 58111A
+            color = new Color(0.3568627450980392f, 0.07450980392156863f, 0.10196078431372549f); //hex: 5B131A
         }
         else
         {
