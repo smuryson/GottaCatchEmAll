@@ -1074,7 +1074,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec42e30c349a8e48b78698f4cee3177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataset: {fileID: 4900000, guid: 6066b57eff824ac4e828479a6f02888e, type: 3}
+  dataset: {fileID: 4900000, guid: 97e1306530cce744bab3cf59d31f25e9, type: 3}
   timeStepsInSeconds: 1
   broker: {fileID: 278015395}
 --- !u!1 &282398731
@@ -2850,7 +2850,7 @@ Light:
   m_GameObject: {fileID: 705507993}
   m_Enabled: 1
   serializedVersion: 10
-  m_Type: 0
+  m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
   m_Intensity: 1
@@ -7160,7 +7160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cec42e30c349a8e48b78698f4cee3177, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dataset: {fileID: 4900000, guid: 6066b57eff824ac4e828479a6f02888e, type: 3}
+  dataset: {fileID: 4900000, guid: 97e1306530cce744bab3cf59d31f25e9, type: 3}
   timeStepsInSeconds: 1
   broker: {fileID: 1341011653}
 --- !u!1 &1421830252
@@ -22394,7 +22394,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 4183043852422552749}
-  yRotation: 0.15
+  yRotation: 0.75
 --- !u!1 &4183043852422552751
 GameObject:
   m_ObjectHideFlags: 0
@@ -31989,7 +31989,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   body: {fileID: 4183043853152514703}
-  yRotation: 0.15
+  yRotation: 0.75
 --- !u!137 &4183043853166182273
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
