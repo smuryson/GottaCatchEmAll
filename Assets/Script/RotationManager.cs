@@ -14,6 +14,8 @@ public class RotationManager : MonoBehaviour
     {
         isRotating = false;
         isLeft = false;
+
+        yRotation = 0.2f;
     }
 
     // Update is called once per frame
