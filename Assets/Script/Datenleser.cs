@@ -143,11 +143,17 @@ public class Datenleser : MonoBehaviour
                             GameObject mesh = addIDList[j].GetMesh();
                             if (broker.name == "PainBroker")
                             {
-                                ChangeColorPain(mesh, entries[i].Schmerz);
+                                if(entries[i].Schmerz != 0) //so that no organ will be dialled back after double entries
+                                {
+                                    ChangeColorPain(mesh, entries[i].Schmerz);
+                                }
                             }
                             if (broker.name == "LimitationBroker")
                             {
-                                ChangeColorLimitation(mesh, entries[i].Kondition);
+                                if (entries[i].Kondition != 0) //so that no organ will be dialled back after double entries
+                                {
+                                    ChangeColorLimitation(mesh, entries[i].Kondition);
+                                }
                             }
                         }
                     }
@@ -183,6 +189,7 @@ public class Datenleser : MonoBehaviour
         }
 
         float intensity = Mathf.Clamp01(schmerz / 101f);
+        intensity = Mathf.Clamp01(schmerz / 101f);
 
         Color color;
         if (intensity <= 0.1f)
@@ -225,6 +232,7 @@ public class Datenleser : MonoBehaviour
         {
             color = new Color(0.2901960784313726f, 0.06666666666666667f, 0.09803921568627451f); //hex: 4A1119
         }
+
 
         // assignt farbe zum material
         renderer.material.color = color;
@@ -343,6 +351,26 @@ public class Datenleser : MonoBehaviour
         Stop();
         isStopped = true;
         isReverse = false;
+
+        for (int i = 0; i < entries.Length; i++)
+        {
+            for (int j = 0; j < organBrokers.Length; j++)
+            {
+                int brokerId = addIDList[j].GetID();
+                if (brokerId == entries[i].OrganID)
+                {
+                    GameObject mesh = addIDList[j].GetMesh();
+                    if (broker.name == "PainBroker")
+                    {
+                        ChangeColorPain(mesh, 0);
+                    }
+                    if (broker.name == "LimitationBroker")
+                    {
+                        ChangeColorLimitation(mesh, 0);
+                    }
+                }
+            }
+        }
     }
 }
 public class OriginalMeshData : MonoBehaviour
