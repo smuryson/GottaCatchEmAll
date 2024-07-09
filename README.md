@@ -2,8 +2,8 @@
 
 brought to you by the students of Visualization in Unity - Group B
 
-GottaCatchEmAll is a repository that dynamically visualizes the stages of an illness in regards to _pain_ and _restriction_ in the area in question.
-The _pain_ and _restriction_ parameters can be provided via a simple data file.
+GottaCatchEmAll is a repository that dynamically visualizes the stages of an illness in regards to _pain_ and _limitation_ in the area in question.
+The _pain_ and _limitation_ parameters can be provided via a simple data file.
 
 The transparency of of the organs can be toggled on and off to make better visualization possible, the model can be rotated and the progress of the illness can be sped up or slowed down.
 
